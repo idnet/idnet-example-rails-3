@@ -73,8 +73,9 @@ GEM
     omniauth (1.1.1)
       hashie (~> 1.2)
       rack
-    omniauth-facebook (1.4.1)
-      omniauth-oauth2 (~> 1.1.0)
+    omniauth-idnet (0.0.6)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
@@ -143,7 +144,7 @@ DEPENDENCIES
   hub (>= 1.10.2)
   jquery-rails
   omniauth (>= 1.1.1)
-  omniauth-facebook
+  omniauth-idnet
   quiet_assets (>= 1.0.1)
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)

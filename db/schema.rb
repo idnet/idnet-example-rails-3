@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(:version => 20121207151839) do
     t.string   "email"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "access_token"
+    t.integer  "token_expires"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

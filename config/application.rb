@@ -13,8 +13,12 @@ module IdnetRails
   class Application < Rails::Application
 
     config.generators do |g|
-      
-      
+
+
+    end
+
+    config.before_configuration do
+      require File.expand_path('../app_config.rb', __FILE__)
     end
 
     # Settings in config/environments/* take precedence over those specified here.

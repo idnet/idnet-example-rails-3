@@ -1,0 +1,9 @@
+development:
+  app_id: ""
+  app_secret: ""
+  id_net_url: ""
+
+production:
+  app_id: ""
+  app_secret: ""
+  id_net_url: ""
