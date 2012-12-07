@@ -36,3 +36,8 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+gem "thin", ">= 1.5.0", :group => [:development, :test]
+gem "unicorn", ">= 4.3.1", :group => :production
+gem "omniauth", ">= 1.1.1"
+gem "omniauth-facebook"
