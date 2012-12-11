@@ -18,8 +18,11 @@ class HomeController < ApplicationController
 
   def activity
     result = JSON.parse(access_token.post('/api/v1/json/activity', {body: {activity: params[:activity]}}).body)
-    if result["error"]
-      flash[:error] = "Sorry! Error happened!"
+    if result["activity"]["errors"].present?
+      flash[:error] = ""
+      result["activity"]["errors"].each do |error|
+        flash[:error] += "<p>#{error}</p>"
+      end
     else
       flash[:notice] = "Your comment is successfully saved"
     end
