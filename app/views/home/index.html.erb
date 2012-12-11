@@ -1,2 +1,24 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<%= form_tag( idnet_registrations_url, {class: "form", method: :post}) do %>
+<%= hidden_field_tag :consumer, APP_CONFIG[:app_id] %>
+<p>
+  <%= label_tag :email %>
+  <%= text_field_tag 'account[email]' %>
+</p>
+<p>
+  <%= label_tag :password %>
+
+  <%= text_field_tag 'account[password]' %>
+</p>
+<p>
+  <%= label_tag :password_confirmation %>
+
+  <%= text_field_tag 'account[password_confirmation]' %>
+</p>
+<p>
+  <%= label_tag :nickname %>
+
+  <%= text_field_tag 'identity[nickname]' %>
+</p>
+
+<%= submit_tag "Register", :id => "submit", :name => "submit", :class => "form_submit", :disabled => false, :disable_with => "Please wait..." %>
+<% end -%>
