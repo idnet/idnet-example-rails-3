@@ -5,11 +5,10 @@
   <%= f.submit "Comment", :disable_with => 'Commenting...' %>
 <% end %>
 <div class="comments">
-  <% @activities.each do |hash| %>
-    <% activity = hash["activity"] %>
+  <% @activities.each do |activity| %>
     <div class="comment">
       <div class="author">
-        <%= activity["identity"]["name"] %>
+        <%= activity["author"]["name"] %>
         wrote <%= time_ago_in_words(activity["created_at"]) %> ago
       </div>
       <div class="message">
@@ -17,5 +16,8 @@
       </div>
     </div>
   <% end %>
+  <%= link_to 'Prev', activities_path(:page => @page-1) if @page>1 %>
+  <p><%= "Page #{@page} of #{@pages_count}" %></p>
+  <%= link_to 'Next', activities_path(:page => @page+1) if @page<@pages_count %>
 </div>
 

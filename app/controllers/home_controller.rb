@@ -11,9 +11,12 @@ class HomeController < ApplicationController
   end
 
   def activities
-    uri = URI.parse("#{APP_CONFIG[:id_net_url]}/api/v1/json/activities?app_id=#{APP_CONFIG[:app_id]}&app_key=main")
+    uri = URI.parse("#{APP_CONFIG[:id_net_url]}/api/v1/json/activities?app_id=#{APP_CONFIG[:app_id]}&app_key=main&page=#{params[:page]||1}")
     http = Net::HTTP.new(uri.host, uri.port)
-    @activities = JSON.parse(http.request(Net::HTTP::Get.new(uri.request_uri)).body)
+    result = JSON.parse(http.request(Net::HTTP::Get.new(uri.request_uri)).body)
+    @page = result["page"]
+    @pages_count = result["pages_count"]
+    @activities = result["activities"]
   end
 
   def activity
