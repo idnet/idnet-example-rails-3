@@ -19,6 +19,10 @@
 
   <%= text_field_tag 'meta[nickname]' %>
 </p>
+<p>
+  <%= label_tag :terms_of_service, :terms_of_service %>
 
+  <%= check_box_tag 'terms_of_service' %>
+</p>
 <%= submit_tag "Register", :id => "submit", :name => "submit", :class => "form_submit", :disabled => false, :disable_with => "Please wait..." %>
 <% end -%>
