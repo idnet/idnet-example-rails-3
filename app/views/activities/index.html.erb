@@ -1,8 +1,12 @@
-<%= form_for :activity, :url => activity_path do |f| %>
-  <%= current_user.name %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :app_key, value: "main" %>
-  <%= f.submit "Comment", :disable_with => 'Commenting...' %>
+<% if user_signed_in? %>
+  <%= form_for :activity, :url => activities_path do |f| %>
+    <%= current_user.name %>
+    <%= f.text_field :message %>
+    <%= f.hidden_field :app_key, value: "main" %>
+    <%= f.submit "Comment", :disable_with => 'Commenting...' %>
+  <% end %>
+<% else %>
+  <%= link_to 'Login to comment', "#", onclick: "return open_idnet_signin_signup('/auth/idnet')" %>
 <% end %>
 <div class="comments">
   <% unless @activities.present? %>
@@ -11,7 +15,7 @@
     <% @activities.each do |activity| %>
       <div class="comment">
         <div class="author">
-          <%= activity["pid"] %>
+          <%= @users[activity["pid"]].name %>
           wrote <%= time_ago_in_words(activity["created_at"]) %> ago
         </div>
         <div class="message">
@@ -24,4 +28,3 @@
     <%= link_to 'Next', activities_path(:page => @page+1) if @page<@pages_count %>
   <% end %>
 </div>
-

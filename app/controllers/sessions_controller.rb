@@ -1,9 +1,8 @@
 class SessionsController < ApplicationController
 
   def new
-    redirect_to '/auth/facebook'
+    redirect_to '/auth/idnet'
   end
-
 
   def create
     auth = request.env["omniauth.auth"]
