@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def idnet_registrations_url
-    id_net_url('registrations')
+    id_net_url('register')
   end
 end
