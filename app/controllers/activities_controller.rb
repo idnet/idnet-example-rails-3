@@ -3,13 +3,13 @@ class ActivitiesController < ApplicationController
   before_filter :authenticate_user!, only: [:create]
 
   def index
-    uri = URI.parse("#{APP_CONFIG[:id_net_url]}/api/v1/json/activities?app_id=#{APP_CONFIG[:app_id]}&app_key=main&page=#{params[:page]||1}")
+    uri = URI.parse("#{APP_CONFIG[:id_net_url]}/api/v1/json/activities?app_id=#{APP_CONFIG[:app_id]}&app_namespace=main&page=#{params[:page]||1}")
     http = Net::HTTP.new(uri.host, uri.port)
     result = JSON.parse(http.request(Net::HTTP::Get.new(uri.request_uri)).body)
     @page = result["page"]
     @pages_count = result["pages_count"]
     @activities = result["results"]
-    @users = User.where(uid: @activities.map{|a| a['pid']}).index_by(&:uid)
+    @users = User.where(uid: @activities.map{|a| a['author_pid']}).index_by(&:uid)
   end
 
   def create

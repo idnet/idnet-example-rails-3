@@ -2,7 +2,7 @@
   <%= form_for :activity, :url => activities_path do |f| %>
     <%= current_user.name %>
     <%= f.text_field :message %>
-    <%= f.hidden_field :app_key, value: "main" %>
+    <%= f.hidden_field :app_namespace, value: "main" %>
     <%= f.submit "Comment", :disable_with => 'Commenting...' %>
   <% end %>
 <% else %>
@@ -15,7 +15,7 @@
     <% @activities.each do |activity| %>
       <div class="comment">
         <div class="author">
-          <%= @users[activity["pid"]].name %>
+          <%= @users[activity["author_pid"]].name %>
           wrote <%= time_ago_in_words(activity["created_at"]) %> ago
         </div>
         <div class="message">
