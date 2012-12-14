@@ -13,3 +13,4 @@ gem "omniauth", ">= 1.1.1"
 gem "omniauth-idnet"
 gem "quiet_assets", ">= 1.0.1", :group => :development
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
+gem 'hsign', git: 'http://gerrit.helios.me/digiweb', branch: "stage", require: "hsign/digest"

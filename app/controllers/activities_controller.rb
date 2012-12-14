@@ -3,7 +3,9 @@ class ActivitiesController < ApplicationController
   before_filter :authenticate_user!, only: [:create]
 
   def index
-    uri = URI.parse("#{APP_CONFIG[:id_net_url]}/api/v1/json/activities?app_id=#{APP_CONFIG[:app_id]}&app_namespace=main&page=#{params[:page]||1}")
+    h = HSign::Digest.new(APP_CONFIG[:app_secret])
+    hmac = h.sign({app_id: APP_CONFIG[:app_id], app_namespace: 'main'}.with_indifferent_access)
+    uri = URI.parse("#{APP_CONFIG[:id_net_url]}/api/v1/json/activities?app_id=#{APP_CONFIG[:app_id]}&app_namespace=main&page=#{params[:page]||1}&_hmac=#{hmac}")
     http = Net::HTTP.new(uri.host, uri.port)
     result = JSON.parse(http.request(Net::HTTP::Get.new(uri.request_uri)).body)
     @page = result["page"]
