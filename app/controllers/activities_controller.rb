@@ -15,7 +15,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    result = JSON.parse(access_token.post('/api/v1/json/activities', {body: {app_id: APP_CONFIG[:app_id], activity: activity_params}}).body)
+    result = JSON.parse(access_token.post('/api/v1/json/activities', {body: activity_params}).body)
     if result["errors"].present?
       flash[:error] = ""
       result["errors"].each do |error|
@@ -29,7 +29,6 @@ class ActivitiesController < ApplicationController
 
   private
   def activity_params
-    params[:activity] ||= {}
-    params[:activity].merge!(url: 'http://localhost:9292/activities')
+    params.merge!(url: 'http://localhost:9292/activities', app_id: APP_CONFIG[:app_id])
   end
 end

@@ -1,9 +1,9 @@
 <% if user_signed_in? %>
-  <%= form_for :activity, :url => activities_path do |f| %>
+  <%= form_tag(activities_path, method: :post) do %>
     <%= current_user.name %>
-    <%= f.text_field :message %>
-    <%= f.hidden_field :app_namespace, value: "main" %>
-    <%= f.submit "Comment", :disable_with => 'Commenting...' %>
+    <%= text_field_tag "message" %>
+    <%= hidden_field_tag "app_namespace", "main" %>
+    <%= submit_tag "Comment", :disable_with => 'Commenting...' %>
   <% end %>
 <% else %>
   <%= link_to 'Login to comment', "#", onclick: "return open_idnet_signin_signup('/auth/idnet')" %>
