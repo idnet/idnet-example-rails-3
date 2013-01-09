@@ -1,11 +1,3 @@
-GIT
-  remote: http://gerrit.helios.me/digiweb
-  revision: 848f6adf1200d96d5a68bb44f11c20264ed55d82
-  branch: stage
-  specs:
-    hsign (0.0.1)
-      rack
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -54,6 +46,8 @@ GEM
       multipart-post (~> 1.1)
     hashie (1.2.0)
     hike (1.2.1)
+    hsign (0.0.1)
+      rack
     httpauth (0.2.0)
     hub (1.10.3)
     i18n (0.6.1)
@@ -149,7 +143,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
-  hsign!
+  hsign
   hub (>= 1.10.2)
   jquery-rails
   omniauth (>= 1.1.1)
