@@ -10,8 +10,15 @@
     </li>
   <% else %>
     <li>
-    <%= link_to 'Login',  "#", onclick: "return open_idnet_signin_signup('/auth/idnet')" %>
+    <%= link_to 'Login through popup',  "#", id: 'popup-login' %>
     </li>
+    <li>
+    <%= link_to 'Login through smart button',  "#", id: 'smart-login' %>
+    </li>
+    <li>
+    <%= link_to 'Login through SDK',  "#", id: 'sdk-login' %>
+    </li>
+
   <% end %>
   <li><%= link_to 'Activities', activities_path %></li>
 </ul>

@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :provider
       t.string :uid
       t.string :access_token
+      t.string :refresh_token
       t.integer :token_expires, null: true, default: nil
 
       t.timestamps

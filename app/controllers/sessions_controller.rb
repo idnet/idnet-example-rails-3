@@ -6,10 +6,16 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
-
-    user = User.where(:uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
+    user = User.where(:uid => auth['uid'].to_s).first || User.new
+    user.update_with_omniauth!(auth)
     session[:user_id] = user.id
-    redirect_to params[:bounce].presence || root_url, :notice => 'Signed in!'
+    flash[:notice] = 'Signed in!'
+    if params[:iframe].present?
+      flash.keep
+      render
+    else
+      redirect_to params[:bounce].presence || root_url
+    end
   end
 
   def destroy

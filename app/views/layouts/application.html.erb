@@ -22,5 +22,48 @@
       <footer>
       </footer>
     </div> <!--! end of #container -->
+    <script type="text/javascript" charset="utf-8">
+    //<![CDATA[
+    (function(w){
+       w._idapi = w._idapi || [];
+       var url = document.location.protocol + '//' + document.location.host;
+       var fn = function(){ w.location.reload(true); };
+       var idnet = document.createElement('script');
+       var s = document.getElementsByTagName('script')[0];
+
+       w._idapi.push(['_setAppId','<%= APP_CONFIG[:app_id] %>']);
+       w._idapi.push(['_setOAuthRedirectUri', url + '/auth/idnet/callback?iframe=true']);
+       w._idapi.push(['_setOAuthScope', '']);
+       w._idapi.push(['_setOAuthMeta', 'alternate', 'Dummy Test Name']);
+       w._idapi.push(['_setOAuthMeta', 'alternate_privacy_url', url + '/#page/privacy']);
+       w._idapi.push(['_setOAuthMeta', 'alternate_tos_url', url + '/#page/terms']);
+       w._idapi.push(['_setOAuthResponseType', 'code']);
+       w._idapi.push(['_setSuccessCallback', fn]);
+
+       idnet.type = 'text/javascript';
+       idnet.async = true;
+       idnet.src = '<%= APP_CONFIG[:id_net_url] + "/assets/api.js" %>';
+       s.parentNode.insertBefore(idnet, s);
+     })(window);
+    //]]>
+    </script>
+    <script type="text/javascript" charset="utf-8">
+    //<![CDATA[
+      window.idAsyncInit = function(){
+        ID.init({
+         appId: '<%= APP_CONFIG[:app_id] %>',
+         redirectUri: document.location.href 
+        });
+      };
+      (function () {
+        var idnet = document.createElement('script');
+        idnet.type = 'text/javascript';
+        idnet.async = true;
+        idnet.src = 'http://localhost:3000/api/sdk.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(idnet, s);
+      })();
+    //]]>
+    </script>
   </body>
 </html>

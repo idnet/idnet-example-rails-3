@@ -1,6 +1,6 @@
 IdnetRails::Application.config.middleware.use OmniAuth::Builder do
   provider :idnet, APP_CONFIG[:app_id], APP_CONFIG[:app_secret],
-    fields: OmniAuth::Idnet::DEFAULT + ['dob'],
+    fields: OmniAuth::Idnet::DEFAULT,
     provider_ignores_state: true,
     setup: true,
     client_options: {

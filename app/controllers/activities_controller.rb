@@ -19,6 +19,7 @@ class ActivitiesController < ApplicationController
 
   def create
     result = JSON.parse(access_token.post('/api/v1/json/activities', {body: activity_params}).body)
+    puts result
     if result["errors"].present?
       flash[:error] = ""
       result["errors"].each do |error|
@@ -32,6 +33,6 @@ class ActivitiesController < ApplicationController
 
   private
   def activity_params
-    params.merge!(url: 'http://localhost:9292/activities', app_id: APP_CONFIG[:app_id])
+    params.merge!(url: 'http://localhost:9292/activities', app_id: APP_CONFIG[:app_id], request_ip: request.remote_ip, request_user_agent: request.env['HTTP_USER_AGENT'], request_referer: request.referer  )
   end
 end
