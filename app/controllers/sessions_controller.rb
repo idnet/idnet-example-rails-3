@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user.update_with_omniauth!(auth)
     session[:user_id] = user.id
     flash[:notice] = 'Signed in!'
-    if params[:iframe].present?
+    if params[:iframe].present? && params[:noframe].blank?
       flash.keep
       render
     else
