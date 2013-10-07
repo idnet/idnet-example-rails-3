@@ -9,7 +9,6 @@ $ ->
   $('#smart-login').click (e) ->
     _idapi.push ['login']
 
-
   $('#sdk-login').click (e) ->
-    ID.login (response) ->
-      console.log(response)
+    ID.login()
+    e.preventDefault()

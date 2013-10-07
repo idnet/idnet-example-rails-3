@@ -9,6 +9,27 @@
     <%= javascript_include_tag id_net_url('/api/popup.js') %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
+    <% requirejs = false %>
+    <% if requirejs %>
+    <script src="<%= id_net_url('scripts/require.js') %>"></script>
+    <script type="text/javascript" charset="utf-8">
+    require.config({
+      baseUrl: "<%= id_net_url('scripts') %>",
+      deps: ['utils/es5-shim', 'easyXDM/json2'],
+      shim: {
+        'utils/es5-shim': {
+          init: function(){
+          }
+        },
+        'easyXDM/easyXDM': {
+          init: function(){
+            return this.easyXDM.noConflict();
+          }
+        }
+      }
+    });
+    </script>
+    <% end %>
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
     <div id="container" class="container">
@@ -34,7 +55,7 @@
        w._idapi.push(['_setAppId','<%= APP_CONFIG[:app_id] %>']);
        w._idapi.push(['_setOAuthRedirectUri', url + '/auth/idnet/callback?iframe=true']);
        w._idapi.push(['_setOAuthScope', '']);
-       w._idapi.push(['_setOAuthMeta', 'alternate', 'Dummy Test Name']);
+       w._idapi.push(['_setOAuthMeta', 'alternate', 'My Awesone website']);
        w._idapi.push(['_setOAuthMeta', 'alternate_privacy_url', url + '/#page/privacy']);
        w._idapi.push(['_setOAuthMeta', 'alternate_tos_url', url + '/#page/terms']);
        w._idapi.push(['_setOAuthResponseType', 'code']);
@@ -50,20 +71,36 @@
     <script type="text/javascript" charset="utf-8">
     //<![CDATA[
       window.idAsyncInit = function(){
+        var url = document.location.protocol + '//' + document.location.host;
         ID.init({
          appId: '<%= APP_CONFIG[:app_id] %>',
-         redirectUri: document.location.href 
+         redirectUri: url + '/auth/idnet/callback',
+         responseType: 'token',
+         meta: {
+           alternate: 'My awesome website',
+           alternate_privacy_url: url + '/#page/privacy',
+           alternate_tos_url: url + '/#page/terms'
+         }
         });
       };
+      <% unless requirejs %>
       (function () {
         var idnet = document.createElement('script');
         idnet.type = 'text/javascript';
         idnet.async = true;
-        idnet.src = 'http://localhost:3000/api/sdk.js';
+        idnet.src = '<%= id_net_url("api/sdk.js") %>';
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(idnet, s);
       })();
+      <% end %>
     //]]>
     </script>
+    <% if requirejs %>
+    <script type="text/javascript" charset="utf-8">
+    require(['id'], function(Main){
+      Main(window);
+    });
+    </script>
+    <% end %>
   </body>
 </html>
