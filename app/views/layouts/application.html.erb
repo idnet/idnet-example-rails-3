@@ -9,7 +9,7 @@
     <%= javascript_include_tag id_net_url('/api/popup.js') %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
-    <% requirejs = false %>
+    <% requirejs = true %>
     <% if requirejs %>
     <script src="<%= id_net_url('scripts/require.js') %>"></script>
     <script type="text/javascript" charset="utf-8">
