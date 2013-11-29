@@ -2,11 +2,11 @@ class CheckoutController < ApplicationController
 
   def index
     hash = { merchant_id: APP_CONFIG[:app_id],
-             amount: Forgery::Monetary.money(min: 10, max: 100),
+             amount: Forgery::Monetary.money(min: 10, max: 100).to_s,
              currency: 'EUR',
              usage: Forgery::Name.company_name,
              transaction_id: SecureRandom.hex,
-             timestamp: Time.now.to_s }.with_indifferent_access
+             timestamp: Time.now.to_i.to_s }.with_indifferent_access
     @params = hash.merge hmac: hsign.sign(hash)
   end
 
