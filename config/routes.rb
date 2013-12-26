@@ -6,6 +6,7 @@ IdnetRails::Application.routes.draw do
   match "/signout" => "sessions#destroy", :as => :signout
   match '/private', to: "home#private_data", as: :private
   resources :activities, only: [:index, :create]
+  resources :app_requests
   match '/checkout', to: 'checkout#index', as: :checkout
   match '/merchant/callback', to: 'checkout#show'
 end
