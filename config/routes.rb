@@ -7,6 +7,7 @@ IdnetRails::Application.routes.draw do
   match '/private', to: "home#private_data", as: :private
   resources :activities, only: [:index, :create]
   resources :app_requests
+  resources :friend_requests
   match '/checkout', to: 'checkout#index', as: :checkout
   match '/merchant/callback', to: 'checkout#show'
 end
