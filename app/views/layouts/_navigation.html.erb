@@ -1,26 +1,28 @@
-<%= link_to "Idnet Rails", root_path, :class => 'brand' %>
+
 <ul class="nav">
+  <li><%= link_to "Idnet Rails", root_path, :class => 'brand' %></li> |
   <% if user_signed_in? %>
     <li>
     Logged in as <%= current_user.name %>
-    </li>
-    <li><%= link_to 'Access private data', private_path %></li>
-    <li><%= link_to 'Checkout', checkout_path %></li>
+    </li> |
+    <li><%= link_to 'Access private data', private_path %></li> |
+    <li><%= link_to 'Checkout', checkout_path %></li> |
     <li>
     <%= link_to 'Logout', signout_path %>
-    </li>
+    </li> |
   <% else %>
     <li>
     <%= link_to 'Login through popup',  "#", id: 'popup-login' %>
-    </li>
+    </li> |
     <li>
     <%= link_to 'Login through smart button',  "#", id: 'smart-login' %>
-    </li>
+    </li> |
     <li>
     <%= link_to 'Login through SDK',  "#", id: 'sdk-login' %>
-    </li>
+    </li> |
 
   <% end %>
-  <li><%= link_to 'Activities', activities_path %></li>
-  <li><%= link_to 'Application requests', app_requests_path%></li>
+  <li><%= link_to 'Activities', activities_path %></li>  |
+  <li><%= link_to 'Application requests', app_requests_path %></li> |
+  <li><%= link_to 'New Site Feed', '#', id: 'share_feed' %></li>
 </ul>
