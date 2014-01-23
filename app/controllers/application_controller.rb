@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def access_token
     return @access_token if defined?(@access_token)
-    consumer = OAuth2::Client.new(APP_CONFIG[:app_id], APP_CONFIG[:app_id], { 
+    consumer = OAuth2::Client.new(APP_CONFIG[:app_id], APP_CONFIG[:app_secret], {
       site: APP_CONFIG[:id_net_url],
       authorize_url: "#{APP_CONFIG[:id_net_url]}/oauth/authorize",
       access_token_url: "#{APP_CONFIG[:id_net_url]}/oauth/token"

@@ -11,6 +11,9 @@ IdnetRails::Application.routes.draw do
       get 'callback'
     end
   end
+
+  resources :friend_requests
+
   match '/checkout', to: 'checkout#index', as: :checkout
   match '/merchant/callback', to: 'checkout#show'
 end
