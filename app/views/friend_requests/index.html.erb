@@ -1,5 +1,5 @@
 <div>
-  <%= @idnet_people.each do |user| %>
+  <% @idnet_people.each do |user| %>
     <div>
       <%= user.email %>
       <%= hidden_field_tag :uid, user.uid %>
