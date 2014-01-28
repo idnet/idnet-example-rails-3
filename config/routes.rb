@@ -5,6 +5,7 @@ IdnetRails::Application.routes.draw do
 
   match "/signout" => "sessions#destroy", :as => :signout
   match '/private', to: "home#private_data", as: :private
+  match '/site_feeds' => 'activities#site_feeds'
   resources :activities, only: [:index, :create]
   resources :app_requests do
     collection do

@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
 
   def index
     hsign = HSign::Digest.new(APP_CONFIG[:app_secret])
-    
+
     hsign.sign(app_id: APP_CONFIG[:app_id], app_namespace: 'main')
     p = hsign.params
     query = Rack::Utils::build_nested_query(p.merge(page: (params[:page] || '1')))
@@ -29,6 +29,9 @@ class ActivitiesController < ApplicationController
       flash[:notice] = "Your comment is successfully saved"
     end
     redirect_to :activities
+  end
+
+  def site_feeds
   end
 
   private

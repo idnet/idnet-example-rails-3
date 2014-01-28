@@ -19,10 +19,17 @@ ul.nav {
   list-style: none;
   margin: 0 0 2em;
   padding: 0;
+  float: left;
 }
 ul.nav li {
   display: inline;
 }
+ul.list {
+  list-style: none;
+  margin: 15px, 15px;
+  float: left;
+}
+.clear { clear: both; }
 #flash_notice, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;
