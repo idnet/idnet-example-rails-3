@@ -7,9 +7,7 @@
     </li> |
     <li><%= link_to 'Access private data', private_path %></li> |
     <li><%= link_to 'Checkout', checkout_path %></li> |
-    <li>
-    <%= link_to 'Logout', signout_path %>
-    </li> |
+    <li><%= link_to 'Logout', signout_path %></li> |
   <% else %>
     <li>
     <%= link_to 'Login through popup',  "#", id: 'popup-login' %>
@@ -20,10 +18,9 @@
     <li>
     <%= link_to 'Login through SDK',  "#", id: 'sdk-login' %>
     </li> |
-
   <% end %>
   <li><%= link_to 'Activities', activities_path %></li>  |
   <li><%= link_to 'Application requests', app_requests_path %></li> |
-  <li><%= link_to 'New Site Feed', '#', id: 'share_feed' %></li> |
-  <li><%= link_to 'Add friends', friend_requests_path %></li>
+  <li><%= link_to 'Add friends', friend_requests_path %></li> |
+  <li><%= link_to 'Site Feeds', '/site_feeds' %></li>
 </ul>
