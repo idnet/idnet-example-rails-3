@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Idnet Rails" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Idnet Rails" %>">
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Idnet Rails" %>" />
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag id_net_url('/api/popup.js') %>
@@ -72,7 +72,29 @@
     //<![CDATA[
       window.idAsyncInit = function(){
         var url = document.location.protocol + '//' + document.location.host;
-        ID.init({
+        // ID.Event.subscribe('id.init', function() {
+        //   // open the authentication modal, login check
+        //   /*
+        //   ID.getLoginStatus(function(response) {
+        //
+        //   if (response) {
+        //   // That means that the server processes the response
+        //   console.log(response);
+        //   } else {
+        //   // response == null that means that user closes the window
+        //   console.log('Login window closed');
+        //   }
+        //
+        //   console.log('YEAH I was here.');
+        //   console.log(response);
+        //   }, true);
+        //   */
+        //   // open the authentication modal, login
+        //   <% unless user_signed_in? %>
+        //   ID.login();
+        //   <% end %>
+        // });
+     ID.init({
          appId: '<%= APP_CONFIG[:app_id] %>',
          redirectUri: url + '/auth/idnet/callback',
          responseType: 'code',
