@@ -1,7 +1,7 @@
 RAILS_ENV = ENV["RAILS_ENV"] || "production"
 RAILS_ROOT = "/home/web/idnet-example/current"
 
-worker_processes 8
+worker_processes 1
 working_directory RAILS_ROOT
 
 listen '/home/web/idnet-example/shared/tmp/sockets/unicorn.sock', :backlog => 2048
