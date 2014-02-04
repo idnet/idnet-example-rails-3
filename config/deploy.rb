@@ -3,6 +3,7 @@ lock '3.1.0'
 
 set :application, 'idnet-example'
 set :repo_url, 'https://github.com/idnet/idnet-example-rails-3'
+set :unicorn_pid, proc { File.join(shared_path, "tmp/pids/unicorn.pid")}
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
