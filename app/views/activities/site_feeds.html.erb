@@ -64,9 +64,6 @@
 <div class="clear"></div>
 
 <%= form_for :site_feed, url: '/', html: { id: 'site_feed_form', class: 'contact-area' } do |f| %>
-  <%= f.label :app_id %>
-  <%= f.text_field :app_id, value: APP_CONFIG[:app_id], name: :app_id %>
-  <br/>
   <%= f.label :picture %>
   <%= f.text_field :picture, value: 'http://localhost:3000/assets/citizen_logo.jpg', name: :picture %>
   <br/>
