@@ -13,6 +13,7 @@
   <li><%= link_to "ID.ui({method: 'feed', picture: 'https://www.id.net/assets/logo.png'})", '#', onclick: "ID.ui({method: 'feed', picture: 'https://www.id.net/assets/logo.png'}); return false;" %></li>
   <li><%= link_to "ID.ui({method: 'feed', description: 'A simple description'})", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description'}); return false;" %></li>
   <li><%= link_to "ID.ui({method: 'feed', link: 'https://www.id.net'})", '#', onclick: "ID.ui({method: 'feed', link: 'https://www.id.net'}); return false;" %></li>
+  <li><%= link_to "ID.ui({method: 'feed', name: 'ID.net Site'})", '#', onclick: "ID.ui({method: 'feed', name: 'ID.net Site'}); return false;" %></li>
 </ul>
 
 <div class="clear"></div>
@@ -25,6 +26,8 @@
   <li><%= link_to "ID.ui({method: 'feed', description: 'A simple description', caption: 'A caption without link'})", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description', caption: 'A caption without link'}); return false" %></li>
   <li><%= link_to "ID.ui({method: 'feed', description: 'A simple description', picture: 'https://www.id.net/assets/logo.png'})", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description', picture: 'https://www.id.net/assets/logo.png'}); return false" %></li>
   <li><%= link_to "ID.ui({method: 'feed', description: 'A simple description', link: 'https://www.id.net'})", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description', link: 'https://www.id.net'}); return false" %></li>
+  <li><%= link_to "ID.ui({method: 'feed', description: 'A simple description', link: 'https://www.id.net', name: 'ID.net Site'})", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description', link: 'https://www.id.net', name: 'ID.net Site'}); return false" %></li>
+  <li><%= link_to "ID.ui({method: 'feed', description: 'A simple description', name: 'ID.net Site'})", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description', name: 'ID.net Site'}); return false" %></li>
 </ul>
 
 <div class="clear"></div>
@@ -36,6 +39,8 @@
   <li><%= link_to "", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description', caption: 'A caption with link', picture: 'https://www.id.net/assets/logo.png'}); return false" %></li>
   <li><%= link_to "ID.ui({method: 'feed', description: 'A simple description', link: 'https://www.id.net', picture: 'https://www.id.net/assets/logo.png'})", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description', link: 'https://www.id.net', picture: 'https://www.id.net/assets/logo.png'}); return false" %></li>
   <li><%= link_to "ID.ui({method: 'feed', caption: 'A caption with link', link: 'https://www.id.net', picture: 'https://www.id.net/assets/logo.png'})", '#', onclick: "ID.ui({method: 'feed', caption: 'A caption with link', link: 'https://www.id.net', picture: 'https://www.id.net/assets/logo.png'}); return false" %></li>
+  <li><%= link_to "ID.ui({method: 'feed', caption: 'A caption with link', link: 'https://www.id.net', name: 'ID.net Site'})", '#', onclick: "ID.ui({method: 'feed', caption: 'A caption with link', link: 'https://www.id.net', name: 'ID.net Site'}); return false" %></li>
+  <li><%= link_to "ID.ui({method: 'feed', name: 'ID.net Site', link: 'https://www.id.net', picture: 'https://www.id.net/assets/logo.png'})", '#', onclick: "ID.ui({method: 'feed', name: 'ID.net Site', link: 'https://www.id.net', picture: 'https://www.id.net/assets/logo.png'}); return false" %></li>
 </ul>
 
 <div class="clear"></div>
@@ -53,5 +58,34 @@
 
 <ul class="list">
   <li># All fields</li>
-  <li><%= link_to "ID.ui({method: 'feed', description: 'A simple description', caption: 'A caption with link', link: 'https://www.id.net', picture: 'https://www.id.net/assets/logo.png'})", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description', caption: 'A caption with link', link: 'https://www.id.net', picture: 'https://www.id.net/assets/logo.png'}); return false" %></li>
+  <li><%= link_to "ID.ui({method: 'feed', description: 'A simple description', caption: 'A caption with link', name: 'ID.net Site', link: 'https://www.id.net', picture: 'https://www.id.net/assets/sitizen_logo.png'})", '#', onclick: "ID.ui({method: 'feed', description: 'A simple description', caption: 'A caption with link', name: 'ID.net Site', link: 'https://www.id.net', picture: 'http://localhost:3000/assets/citizen_logo.jpg'}, function(){}, function(){}); return false" %></li>
 </ul>
+
+<div class="clear"></div>
+
+<%= form_for :site_feed, url: '/', html: { id: 'site_feed_form', class: 'contact-area' } do |f| %>
+  <%= f.label :app_id %>
+  <%= f.text_field :app_id, value: APP_CONFIG[:app_id], name: :app_id %>
+  <br/>
+  <%= f.label :picture %>
+  <%= f.text_field :picture, value: 'http://localhost:3000/assets/citizen_logo.jpg', name: :picture %>
+  <br/>
+  <%= f.label :source %>
+  <%= f.text_field :source, name: :source %>
+  <br/>
+  <%= f.label :caption %>
+  <%= f.text_field :caption, value: 'A caption with link', name: :caption%>
+  <br/>
+  <%= f.label :name %>
+  <%= f.text_field :name, value: 'ID.net Site', name: :name %>
+  <br/>
+  <%= f.label :link %>
+  <%= f.text_field :link, value: 'https://www.id.net', name: :link %>
+  <br/>
+  <%= f.label :description %>
+  <%= f.text_field :description, value: 'A simple description', name: :description %>
+  <br/>
+  <%= f.submit 'New Site Feed', class: 'submit-button' %>
+<% end %>
+
+<div class="clear"></div>
