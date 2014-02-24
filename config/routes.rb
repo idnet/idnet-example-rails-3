@@ -14,7 +14,7 @@ IdnetRails::Application.routes.draw do
   end
 
   resources :friend_requests
-
+  match '/callback/event', to: 'home#trace_event'
   match '/checkout', to: 'checkout#index', as: :checkout
   match '/merchant/callback', to: 'checkout#show'
 end
