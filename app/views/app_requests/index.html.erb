@@ -1,32 +1,4 @@
 <div id="app_requests">
   <%= text_field_tag :request_message, "Hello! Join me on this awesome app!" %>
   <%= button_tag "Send request", id: "send_request"%>
-  <table class="hover">
-  <thead>
-    <tr>
-      <th>
-       From
-     </th>
-     <th>
-       Message
-     </th>
-     <th>
-       Time
-     </th>
-     <th>
-       Web site
-     </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @application_requests["data"].each do |app_request| %>
-      <tr>
-        <td><%= app_request["from"]["nickname"]%></td>
-        <td><%= app_request["message"]%></td>
-        <td><%= app_request["created_time"]%></td>
-        <td><%= app_request["application"]["name"]%></td>
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
 </div>

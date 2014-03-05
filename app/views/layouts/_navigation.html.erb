@@ -6,6 +6,8 @@
     Logged in as <%= current_user.name %>
     </li> |
     <li><%= link_to 'Access private data', private_path %></li> |
+    <li><%= link_to 'Application requests', app_requests_path %></li> |
+    <li><%= link_to 'Add friends', friend_requests_path %></li> |
     <li><%= link_to 'Checkout', checkout_path %></li> |
     <li><%= link_to 'Logout', signout_path %></li> |
   <% else %>
@@ -20,7 +22,5 @@
     </li> |
   <% end %>
   <li><%= link_to 'Activities', activities_path %></li>  |
-  <li><%= link_to 'Application requests', app_requests_path %></li> |
-  <li><%= link_to 'Add friends', friend_requests_path %></li> |
   <li><%= link_to 'Site Feeds', '/site_feeds' %></li>
 </ul>
