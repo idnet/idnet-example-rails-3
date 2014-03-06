@@ -7,11 +7,10 @@ IdnetRails::Application.routes.draw do
   match '/private', to: "home#private_data", as: :private
   match '/site_feeds' => 'activities#site_feeds'
   resources :activities, only: [:index, :create]
-  resources :app_requests do
-    collection do
-      get 'callback'
-    end
-  end
+
+  get 'app_requests' => 'app_requests#index', as: :app_requests
+  get 'app_requests/callback' => 'app_requests#callback'
+  get 'app_requests/delete' => 'app_requests#delete', as: :delete_request
 
   resources :friend_requests
   match '/callback/event', to: 'home#trace_event'

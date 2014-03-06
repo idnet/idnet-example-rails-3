@@ -1,0 +1,5 @@
+<div id="app_request">
+  <h3>Application request info:</h3>
+  <p><%= @request %></p>
+  <%= link_to 'Delete request', delete_request_path(request_id: params[:request_id]) %><br />
+</div>

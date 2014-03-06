@@ -1,5 +1,5 @@
 $ ->
 
   $('#send_request').click (e) ->
-    ID.ui( {method: 'apprequests', redirect_uri: "http://localhost:4000/auth/idnet/callback", message: $("#request_message").val()})
+    ID.ui( {method: 'apprequests', redirect_uri: window.location+"/callback", message: $("#request_message").val(), data: "Hidden request data"})
     e.preventDefault()
