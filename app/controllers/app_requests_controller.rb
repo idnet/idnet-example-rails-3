@@ -5,6 +5,7 @@ class AppRequestsController < ApplicationController
   end
 
   def callback
+    ensure_login params[:code]
     @request = JSON.parse(access_token.get("/api/v1/json/request-#{params[:request_id]}_#{current_user.uid}").body)
   end
 
