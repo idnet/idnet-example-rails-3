@@ -30,14 +30,30 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def access_token
-    return @access_token if defined?(@access_token)
-    consumer = OAuth2::Client.new(APP_CONFIG[:app_id], APP_CONFIG[:app_secret], {
+  def oauth_client
+    return @oauth_client if defined?(@oauth_client)
+    @oauth_client = OAuth2::Client.new(APP_CONFIG[:app_id], APP_CONFIG[:app_secret], {
       site: APP_CONFIG[:id_net_url],
       authorize_url: "#{APP_CONFIG[:id_net_url]}/oauth/authorize",
       access_token_url: "#{APP_CONFIG[:id_net_url]}/oauth/token"
     }
     )
-    @access_token = OAuth2::AccessToken.from_hash(consumer, access_token: current_user.access_token, expires: current_user.token_expires,header_format: "OAuth %s", param_name: :oauth_token )
+  end
+
+  def obtain_token auth_code
+    @access_token = oauth_client.auth_code.get_token auth_code
+    data = JSON.parse(@access_token.get('/api/v1/json/profile').body)
+    user = User.where(:uid => data['pid'].to_s).first || User.new
+    user.uid = data['pid']
+    user.name = data['nickname']
+    user.email = data['email']
+    user.access_token = @access_token.token
+    user.save!
+    session[:user_id] = user.id
+  end
+
+  def access_token code = nil
+    return @access_token if defined?(@access_token)
+    @access_token = OAuth2::AccessToken.from_hash(oauth_client, access_token: current_user.access_token, expires: current_user.token_expires,header_format: "OAuth %s", param_name: :oauth_token )
   end
 end
