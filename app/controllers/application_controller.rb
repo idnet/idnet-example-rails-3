@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
     user.uid = data['pid']
     user.name = data['nickname']
     user.email = data['email']
-    user.access_token = @access_token
+    user.access_token = @access_token.token
     user.save!
     session[:user_id] = user.id
   end
