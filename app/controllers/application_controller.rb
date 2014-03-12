@@ -40,8 +40,7 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  def ensure_login auth_code
-    return if current_user.present?
+  def obtain_token auth_code
     @access_token = oauth_client.auth_code.get_token auth_code
     data = JSON.parse(@access_token.get('/api/v1/json/profile').body)
     user = User.where(:uid => data['pid'].to_s).first || User.new
