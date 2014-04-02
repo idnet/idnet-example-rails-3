@@ -16,10 +16,14 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
 end
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-debugger'
 end
+
+gem 'faraday_middleware-parse_oj', '~> 0.2.1', require: 'faraday_middleware/parse_oj'
+gem 'faraday_middleware'
 
 gem 'hsign', require: 'hsign/digest'
 gem 'jquery-rails'

@@ -1,5 +1,6 @@
 IdnetRails::Application.routes.draw do
   root :to => "home#index"
+  resources :users, only: [:new, :create]
   match "/auth/:provider/callback", to: "sessions#create"
   match "/auth/:provider/setup", to: "sessions#setup"
 
