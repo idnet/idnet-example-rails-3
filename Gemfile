@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '3.2.15'
+gem 'rails', '3.2.17'
 gem 'sqlite3'
 
 group :assets do
@@ -22,6 +22,7 @@ group :development, :test do
   gem 'pry-debugger'
 end
 
+gem 'faraday', '~> 0.8.5'
 gem 'faraday_middleware-parse_oj', '~> 0.2.1', require: 'faraday_middleware/parse_oj'
 gem 'faraday_middleware'
 
