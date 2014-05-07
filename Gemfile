@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.17'
-gem 'sqlite3'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.6'
@@ -10,11 +9,16 @@ group :assets do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'capistrano', '3.1.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
+end
+
+group :production do
+  gem 'mysql2'
 end
 
 group :development, :test do
