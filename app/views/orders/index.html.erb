@@ -1,0 +1,25 @@
+<%= link_to "Create an order", new_order_path %>
+
+<hr/>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>Usage</th>
+      <th>Idnet Transaction ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= link_to order.id, order %></td>
+      <td><%= order.amount %></td>
+      <td><%= order.currency %></td>
+      <td><%= order.usage %></td>
+      <td><%= order.transaction_unique_id %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

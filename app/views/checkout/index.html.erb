@@ -11,4 +11,4 @@ Order params
   <% end %>
 </table>
 <br/>
-<%= link_to 'New order', "#{APP_CONFIG[:id_net_url]}/checkout?#{@params.to_param}", target: '_blank' %>
+<%= link_to 'New order', idnet_checkout_url(@params), target: '_blank' %>

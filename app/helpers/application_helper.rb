@@ -10,4 +10,10 @@ module ApplicationHelper
   def idnet_registrations_url
     id_net_url('register')
   end
+
+  def idnet_checkout_url(query = {})
+     uri = URI.parse "#{APP_CONFIG[:id_net_url]}/checkout"
+     uri.query = query.to_query
+     uri.to_s
+  end
 end

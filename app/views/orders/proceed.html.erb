@@ -1,0 +1,27 @@
+<%= link_to "Back to orders list", orders_path %>
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>Usage</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @order.id %></td>
+      <td><%= @order.amount %></td>
+      <td><%= @order.currency %></td>
+      <td><%= @order.usage %></td>
+      <td><%= @order.status %></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr/>
+
+<%= link_to "Proceed to payment", idnet_checkout_url(@order.to_hmac), target: '_blank' %>
