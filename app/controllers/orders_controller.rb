@@ -40,4 +40,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  protected
+
+  def order_params
+    params.slice(:amount, :currency, :usage, :status, :timestamp, :transaction_unique_id, :transaction_id)
+  end
+
 end
