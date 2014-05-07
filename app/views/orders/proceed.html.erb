@@ -8,6 +8,7 @@
       <th>Amount</th>
       <th>Currency</th>
       <th>Usage</th>
+      <th>Idnet Transaction ID</th>
       <th>Status</th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
       <td><%= @order.amount %></td>
       <td><%= @order.currency %></td>
       <td><%= @order.usage %></td>
+      <td><%= @order.transaction_unique_id %></td>
       <td><%= @order.status %></td>
     </tr>
   </tbody>

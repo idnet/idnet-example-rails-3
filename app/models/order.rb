@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
 
   before_validation :set_timestamp
   before_save :set_timestamp
-  attr_protected :timestamp, :merchant_id, :user_id
+  attr_protected :timestamp, :merchant_id, :user_id, :transaction_unique_id
 
   belongs_to :user
 
@@ -29,4 +29,16 @@ class Order < ActiveRecord::Base
     self.timestamp = Time.now if timestamp.blank?
   end
 
+  def callback_verified?(params)
+    hsign.verify?(params) && same_transaction?(params)
+  end
+
+  def same_transaction?(params)
+    transaction = params.with_indifferent_access
+    # Use BigDecimal as it is converted from DB
+    BigDecimal.new(transaction["amount"].to_s) == BigDecimal.new(amount.to_s) &&
+    transaction["currency"] == currency &&
+    transaction["transaction_id"].to_i == id &&
+    transaction["usage"] == usage
+  end
 end

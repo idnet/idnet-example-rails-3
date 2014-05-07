@@ -23,5 +23,5 @@ IdnetRails::Application.routes.draw do
   end
 
   match '/checkout', to: 'checkout#index', as: :checkout
-  match '/merchant/callback', to: 'checkout#show'
+  match '/merchant/callback', to: 'orders#callback'
 end
