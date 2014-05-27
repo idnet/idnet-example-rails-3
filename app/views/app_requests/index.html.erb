@@ -1,4 +1,9 @@
 <div id="app_requests">
   <%= text_field_tag :request_message, "Hello! Join me on this awesome app!" %>
-  <%= button_tag "Send request", id: "send_request"%>
+  <%= button_tag "Send request", id: "send_request"%><br />
+  <% @friends.each do |friend|%>
+    <%= button_tag "Send to #{friend["nickname"]}", class: "send_to_friend", "data-id" => friend["id"] %>
+    <br />
+  <% end %>
+  <%= button_tag "Send to all", id: "send_to_all" %>
 </div>
