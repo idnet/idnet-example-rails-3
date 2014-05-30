@@ -1,2 +1,2 @@
-environment_id="ruby-1.9.3@idnet-rails"
+environment_id="ruby-2.1.2@idnet-rails"
 rvm use --create $environment_id

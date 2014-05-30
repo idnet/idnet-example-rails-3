@@ -2,6 +2,7 @@ require 'net/http'
 
 class AppRequestsController < ApplicationController
   def index
+    @friends = JSON.parse(access_token.get("/api/v1/json/#{current_user.uid}/friends").body)["data"]
   end
 
   def callback

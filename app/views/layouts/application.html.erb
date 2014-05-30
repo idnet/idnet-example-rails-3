@@ -15,10 +15,11 @@
     <script type="text/javascript" charset="utf-8">
     require.config({
       baseUrl: "<%= id_net_url('scripts') %>",
-      deps: ['utils/es5-shim', 'easyXDM/json2'],
+      deps: ['easyXDM/json2', 'underscore'],
       shim: {
-        'utils/es5-shim': {
-          init: function(){
+        'underscore': {
+          init: function() {
+            return this._.noConflict();
           }
         },
         'easyXDM/easyXDM': {

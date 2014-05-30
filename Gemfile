@@ -23,7 +23,7 @@ end
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'pry-debugger'
+  gem 'pry-byebug'
 end
 
 gem 'faraday', '~> 0.8.5'
