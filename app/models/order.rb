@@ -30,15 +30,25 @@ class Order < ActiveRecord::Base
   end
 
   def callback_verified?(params)
-    hsign.verify?(params) && same_transaction?(params)
+    unless hsign.verify?(params)
+      logger.error "HMAC verification failed"
+      return false
+    end
+    return same_transaction?(params)
   end
 
   def same_transaction?(params)
     transaction = params.with_indifferent_access
-    # Use BigDecimal as it is converted from DB
-    BigDecimal.new(transaction["amount"].to_s) == BigDecimal.new(amount.to_s) &&
-    transaction["currency"] == currency &&
-    transaction["transaction_id"].to_i == id &&
-    transaction["usage"] == usage
+    unless transaction["timestamp"].to_i == timestamp.to_i
+      logger.error "Tmiestamp mismatch"
+      return false
+    end
+
+    unless transaction["transaction_id"].to_i == id
+      logger.error "Id  mismatch"
+      return false
+    end
+
+    return true
   end
 end
